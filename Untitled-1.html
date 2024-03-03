@@ -13,7 +13,7 @@
 
         function  draw()
         {
-            graphics.fillText("hello",50,50);
+           // graphics.fillText("hello",50,50);
             graphics.beginPath();
             graphics.fillStyle = "#FF00FF";
             graphics.strokeStyle = "#000000";
@@ -54,7 +54,7 @@
 
                 //zęby
                 graphics.fillStyle ="#FFFFFF";
-                graphics.fillPoly(299,295,299,322,2775,322,275,292);
+                graphics.fillPoly(299,295,299,322,275,322,275,292);
                 graphics.fillPoly(302,292,302,322,325,322,325,292);
                 graphics.fillStyle="#FF00FF";
 
@@ -76,13 +76,34 @@
                 graphics.fillOval(406,278,20,25);
                 graphics.lineWidth=2.5;
                 graphics.closePath();
-            
-            
-           
-
-
            
         }
+        function applyWindowToViewportTransformation(left,right,bottom,top,preserveAspect) {
+        var displayAspect, windowAspect;
+        var excess;
+        var pixelwidth, pixelheight;
+        if (preserveAspect) {
+            // Adjust the limits to match the aspect ratio of the drawing area.
+            displayAspect = Math.abs(canvas.height / canvas.width);
+            windowAspect = Math.abs(( top-bottom ) / ( right-left ));
+            if (displayAspect > windowAspect) {
+                // Expand the viewport vertically.
+                excess = (top-bottom) * (displayAspect/windowAspect - 1);
+                top = top + excess/2;
+                bottom = bottom - excess/2;
+            }
+            else if (displayAspect < windowAspect) {
+                // Expand the viewport vertically.
+                excess = (right-left) * (windowAspect/displayAspect - 1);
+                right = right + excess/2;
+                left = left - excess/2;
+            }
+        }
+        graphics.scale( canvas.width / (right-left), canvas.height / (bottom-top) );
+        graphics.translate( -left, -top );
+        pixelwidth =  Math.abs(( right - left ) / canvas.width);
+        pixelheight = Math.abs(( bottom - top ) / canvas.height);
+        pixelSize = Math.max(pixelwidth,pixelheight);
         function addGraphicsContextExtras(graphics) {
         graphics.strokeLine = function(x1,y1,x2,y2) {
            this.beginPath();
@@ -102,7 +123,69 @@
            this.stroke();
         }
     }
-    
+}
+function addGraphicsContextExtras(graphics) {
+        graphics.strokeLine = function(x1,y1,x2,y2) {
+           this.beginPath();
+           this.moveTo(x1,y1);
+           this.lineTo(x2,y2);
+           this.stroke();
+        }
+        graphics.fillCircle = function(x,y,r) {
+           this.beginPath();
+           this.arc(x,y,r,0,2*Math.PI,false);
+           this.fill();
+        }
+        graphics.strokeCircle = function(x,y,radius) {
+           this.beginPath();
+           this.arc(x,y,radius,0,2*Math.PI,false);
+           this.stroke();
+        }
+        graphics.fillPoly = function() { 
+            if (arguments.length < 6)
+               return;
+            this.beginPath();
+            this.moveTo(arguments[0],arguments[1]);
+            for (var i = 2; i+1 < arguments.length; i = i + 2) { 
+               this.lineTo(arguments[i],arguments[i+1]);
+            }
+            this.closePath();
+            this.fill();
+        }
+        graphics.strokePoly = function() { 
+            if (arguments.length < 4)
+               return;
+            this.beginPath();
+            this.moveTo(arguments[0],arguments[1]);
+            for (var i = 2; i+1 < arguments.length; i = i + 2) { 
+               this.lineTo(arguments[i],arguments[i+1]);
+            }
+            this.closePath();
+            this.stroke();
+        }
+        graphics.fillOval = function(x,y,horizontalRadius,verticalRadius) {
+           this.save();
+           this.translate(x,y);
+           this.scale(horizontalRadius,verticalRadius);
+           this.beginPath();
+           this.arc(0,0,1,0,2*Math.PI,false);
+           this.restore();
+           this.fill();
+        }
+        graphics.strokeOval = function(x,y,horizontalRadius,verticalRadius) {
+           this.save();
+           this.translate(x,y);
+           this.scale(horizontalRadius,verticalRadius);
+           this.beginPath();
+           this.arc(0,0,1,0,2*Math.PI,false);
+           this.restore();
+           this.stroke();
+        }
+        graphics.getRGB = function(x,y) {
+            var color = this.getImageData(x,y,1,1);
+            return color.data;
+        }
+    } 
     function init() {
         try {
             canvas = document.getElementById("canvas");
@@ -117,9 +200,8 @@
     }
     
 </script>
-<link href="data:text/css,%3Ais(%5Bid*%3D'google_ads_iframe'%5D%2C%5Bid*%3D'taboola-'%5D%2C.taboolaHeight%2C.taboola-placeholder%2C%23credential_picker_container%2C%23credentials-picker-container%2C%23credential_picker_iframe%2C%5Bid*%3D'google-one-tap-iframe'%5D%2C%23google-one-tap-popup-container%2C.google-one-tap-modal-div%2C%23amp_floatingAdDiv%2C%23ez-content-blocker-container)%20%7Bdisplay%3Anone!important%3Bmin-height%3A0!important%3Bheight%3A0!important%3B%7D" rel="stylesheet" type="text/css"></head>
 </head>
-<body onload="init()"> <!-- the onload attribute here is what calls the init() function -->
+<body onload="init()" data-new-gr-c-s-check-loaded="14.1100.0" data-gr-ext-installed=""> <!-- the onload attribute here is what calls the init() function -->
 
 <h2>CS 424, Lab 2, Exercise 1</h2>
 
@@ -137,23 +219,6 @@ Canvas not supported.
 
 
 
-<script>mendeleyWebImporter = {
-  downloadPdfs(e,t) { return this._call('downloadPdfs', [e,t]); },
-  open() { return this._call('open', []); },
-  setLoginToken(e) { return this._call('setLoginToken', [e]); },
-  _call(methodName, methodArgs) {
-    const id = Math.random();
-    window.postMessage({ id, token: '0.7410837702584282', methodName, methodArgs }, 'https://e-uczelnia.ath.bielsko.pl');
-    return new Promise(resolve => {
-      const listener = window.addEventListener('message', event => {
-        const data = event.data;
-        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
-        window.removeEventListener('message', listener);
-        resolve(data.result);
-      });
-    });
-  }
-};</script>
 
 
-</html>
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html></html>
