@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPSC 424, Lab 2, Exercise 1</title>
+    <script>
+        "use strict";
+        var canvas;
+        var graphics;
+        var pixelSize;
+
+        function  draw()
+        {
+            graphics.fillText("hello",50,50);
+            graphics.beginPath();
+                //linia 1
+                graphics.moveTo(100.5,200.5);
+                graphics.lineTo(300.5,200.5);
+                graphics.lineTo(330.5,270.5); 
+                graphics.lineTo(200.5,400.5);
+                graphics.lineTo(70.5,270.5);
+                graphics.lineTo(100.5,200.5);
+                // linia 2     
+                graphics.moveTo(70.5,270.5);
+                graphics.lineTo(330.5,270.5);
+                graphics.lineTo(70.5,270.5);
+                graphics.fillStyle="rgb(230, 16, 198)";
+                
+                graphics.fill();
+                graphics.beginPath();
+                //linia 1
+                graphics.moveTo(100.5,200.5);
+                graphics.lineTo(300.5,200.5);
+                graphics.lineTo(330.5,270.5); 
+                graphics.lineTo(200.5,400.5);
+                graphics.lineTo(70.5,270.5);
+                graphics.lineTo(100.5,198.5);
+                // linia 2     
+                graphics.moveTo(70.5,270.5);
+                graphics.lineTo(330.5,270.5);
+                graphics.lineTo(70.5,270.5);
+                graphics.lineWidth=2.5;
+                graphics.stroke();
+                //oko białko lewe
+            
+            graphics.fillCircle();
+            graphics.beginPath();
+            graphics.arc(140.5,235.5,25,0,2*Math.PI);
+            graphics.fillStyle="white";
+            graphics.fill();      
+
+            graphics.strokeCircle ();
+            graphics.beginPath();
+            graphics.arc(140.5,235.5,25,0,2*Math.PI);
+            graphics.strokeStyle="white";
+            graphics.stroke();
+            // oko źrenica lewe         
+            graphics.fillCircle();
+            graphics.beginPath();
+            graphics.arc(140.5,235.5,12,0,2*Math.PI);
+            graphics.fillStyle="black";
+            graphics.fill();      
+
+            graphics.strokeCircle ();
+            graphics.beginPath();
+            graphics.arc(140.5,235.5,12,0,2*Math.PI);
+            graphics.strokeStyle="black";
+            graphics.stroke();
+            // oko plamka lewe
+            graphics.fillCircle();
+            graphics.beginPath();
+            graphics.arc(135.5,230.5,5,0,2*Math.PI);
+            graphics.fillStyle="white";
+            graphics.fill();      
+
+            graphics.strokeCircle ();
+            graphics.beginPath();
+            graphics.arc(135.5,230.5,5,0,2*Math.PI);
+            graphics.strokeStyle="black";
+            graphics.stroke();
+
+            //oko białko prawe
+            
+            graphics.fillCircle();
+            graphics.beginPath();
+            graphics.arc(265.5,235.5,25,0,2*Math.PI);
+            graphics.fillStyle="white";
+            graphics.fill();      
+
+            graphics.strokeCircle ();
+            graphics.beginPath();
+            graphics.arc(265.5,235.5,25,0,2*Math.PI);
+            graphics.strokeStyle="white";
+            graphics.stroke();
+            // oko źrenica prawe         
+            graphics.fillCircle();
+            graphics.beginPath();
+            graphics.arc(265.5,235.5,12,0,2*Math.PI);
+            graphics.fillStyle="black";
+            graphics.fill();      
+
+            graphics.strokeCircle ();
+            graphics.beginPath();
+            graphics.arc(265.5,235.5,12,0,2*Math.PI);
+            graphics.strokeStyle="black";
+            graphics.stroke();
+            // oko plamka prawe
+            graphics.fillCircle();
+            graphics.beginPath();
+            graphics.arc(260.5,230.5,5,0,2*Math.PI);
+            graphics.fillStyle="white";
+            graphics.fill();      
+
+            graphics.strokeCircle ();
+            graphics.beginPath();
+            graphics.arc(260.5,230.5,5,0,2*Math.PI);
+            graphics.strokeStyle="black";
+            graphics.stroke();
+
+
+           
+        }
+        function addGraphicsContextExtras(graphics) {
+        graphics.strokeLine = function(x1,y1,x2,y2) {
+           this.beginPath();
+           this.moveTo(x1,y1);
+           this.lineTo(x2,y2);
+           this.stroke();
+        }
+        
+        graphics.fillCircle = function(x,y,r) {
+           this.beginPath();
+           this.arc(x,y,r,0,2*Math.PI,false);
+           this.fill();
+        }
+        graphics.strokeCircle = function(x,y,radius) {
+           this.beginPath();
+           this.arc(x,y,radius,0,2*Math.PI,false);
+           this.stroke();
+        }
+    }
+    
+    function init() {
+        try {
+            canvas = document.getElementById("canvas");
+            graphics = canvas.getContext("2d");
+        } catch(e) {
+            document.getElementById("canvasholder").innerHTML =
+               "Canvas graphics is not supported.<br>" +
+               "An error occurred while initializing graphics.";
+        }
+        addGraphicsContextExtras(graphics);
+        draw();  // Call draw() to draw on the canvas.
+    }
+    
+</script>
+<link href="data:text/css,%3Ais(%5Bid*%3D'google_ads_iframe'%5D%2C%5Bid*%3D'taboola-'%5D%2C.taboolaHeight%2C.taboola-placeholder%2C%23credential_picker_container%2C%23credentials-picker-container%2C%23credential_picker_iframe%2C%5Bid*%3D'google-one-tap-iframe'%5D%2C%23google-one-tap-popup-container%2C.google-one-tap-modal-div%2C%23amp_floatingAdDiv%2C%23ez-content-blocker-container)%20%7Bdisplay%3Anone!important%3Bmin-height%3A0!important%3Bheight%3A0!important%3B%7D" rel="stylesheet" type="text/css"></head>
+</head>
+<body onload="init()"> <!-- the onload attribute here is what calls the init() function -->
+
+<h2>CS 424, Lab 2, Exercise 1</h2>
+
+<noscript>
+    <!-- This message will be shown in the page if JavaScript is not available. -->
+<p>JavaScript is required to use this page.</p>
+</noscript>
+
+<div id="canvasholder">
+<canvas id="canvas" width="600" height="600">
+    <!-- This message is shown on the page if the browser doesn't support the canvas element. -->
+Canvas not supported.
+</canvas>
+</div>
+
+
+
+<script>mendeleyWebImporter = {
+  downloadPdfs(e,t) { return this._call('downloadPdfs', [e,t]); },
+  open() { return this._call('open', []); },
+  setLoginToken(e) { return this._call('setLoginToken', [e]); },
+  _call(methodName, methodArgs) {
+    const id = Math.random();
+    window.postMessage({ id, token: '0.7410837702584282', methodName, methodArgs }, 'https://e-uczelnia.ath.bielsko.pl');
+    return new Promise(resolve => {
+      const listener = window.addEventListener('message', event => {
+        const data = event.data;
+        if (typeof data !== 'object' || !('result' in data) || data.id !== id) return;
+        window.removeEventListener('message', listener);
+        resolve(data.result);
+      });
+    });
+  }
+};</script>
+
+
+</html>
