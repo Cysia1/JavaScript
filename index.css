@@ -1,0 +1,15 @@
+body{
+    background-color: #DDDDDD;
+}
+canvas
+{
+    background-color: white;
+    display: block;
+}
+#canvasholder
+{
+    border: 2px solid black;
+   
+    float: left;
+}
+ 
