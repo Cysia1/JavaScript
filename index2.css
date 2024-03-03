@@ -1,0 +1,16 @@
+ body {
+        background-color: #DDDDDD;
+        -webkit-user-select: none; 
+        -moz-user-select: none;    
+        -ms-user-select: none;     
+        -o-user-select: none;      
+        user-select: none;
+    }
+    canvas {
+        background-color: white;
+        display: block;
+    }
+    #canvasholder {
+        border:2px solid black;
+        float: left; 
+    }
