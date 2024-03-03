@@ -13,7 +13,7 @@
 
         function  draw()
         {
-            graphics.fillText("hello",50,50);
+           graphics.fillText("hello",50,50);
             graphics.beginPath();
             graphics.fillStyle = "#FF00FF";
             graphics.strokeStyle = "#000000";
@@ -54,8 +54,8 @@
 
                 //zęby
                 graphics.fillStyle ="#FFFFFF";
-                graphics.fillPoly(299,295,299,322,275,322,275,292);
-                graphics.fillPoly(302,292,302,322,325,322,325,292);
+                graphics.fillPoly(299,295, 299,322, 275,322, 275,292);
+                graphics.fillPoly(302,292, 302,322, 325,322, 325,292);
                 graphics.fillStyle="#FF00FF";
 
                 graphics.fillOval(300,270,100,30);
@@ -66,15 +66,12 @@
                 graphics.fillOval(206,285,20,20);
                 graphics.fillStyle="#FF00FF";
                 graphics.fillOval(200,278,20,25);
-                graphics.lineWidth=2.5;
-                graphics.stroke();
-
+                
                 //policzek P
                 graphics.fillStyle="#000000";
                 graphics.fillOval(400,285,20,20);
                 graphics.fillStyle="#FF00FF";
-                graphics.fillOval(406,278,20,25);
-                graphics.lineWidth=2.5;
+                graphics.fillOval(406,278,20,25);  
                 graphics.closePath();
            
         }
@@ -83,17 +80,14 @@
         var excess;
         var pixelwidth, pixelheight;
         if (preserveAspect) {
-            // Adjust the limits to match the aspect ratio of the drawing area.
             displayAspect = Math.abs(canvas.height / canvas.width);
             windowAspect = Math.abs(( top-bottom ) / ( right-left ));
             if (displayAspect > windowAspect) {
-                // Expand the viewport vertically.
                 excess = (top-bottom) * (displayAspect/windowAspect - 1);
                 top = top + excess/2;
                 bottom = bottom - excess/2;
             }
             else if (displayAspect < windowAspect) {
-                // Expand the viewport vertically.
                 excess = (right-left) * (windowAspect/displayAspect - 1);
                 right = right + excess/2;
                 left = left - excess/2;
@@ -196,23 +190,23 @@ function addGraphicsContextExtras(graphics) {
                "An error occurred while initializing graphics.";
         }
         addGraphicsContextExtras(graphics);
-        draw();  // Call draw() to draw on the canvas.
+        draw();  
     }
     
 </script>
 </head>
-<body onload="init()" data-new-gr-c-s-check-loaded="14.1100.0" data-gr-ext-installed=""> <!-- the onload attribute here is what calls the init() function -->
+<body onload="init()" data-new-gr-c-s-check-loaded="14.1100.0" data-gr-ext-installed=""> 
 
 <h2>CS 424, Lab 2, Exercise 1</h2>
 
 <noscript>
-    <!-- This message will be shown in the page if JavaScript is not available. -->
+   
 <p>JavaScript is required to use this page.</p>
 </noscript>
 
 <div id="canvasholder">
 <canvas id="canvas" width="600" height="600">
-    <!-- This message is shown on the page if the browser doesn't support the canvas element. -->
+   
 Canvas not supported.
 </canvas>
 </div>
