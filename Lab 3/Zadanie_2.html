@@ -22,20 +22,20 @@
 
     var world;  // A SceneGraphNode representing the entire scene. 
     
-	var blueLeft;
-    var blueRight;
-    var blueSwing;
-    var blueBaseTriangle;
+	var niebieskiLewo;
+    var niebieskiPrawo;
+    var niebieskiProstokat;
+    var niebieskiTrojkat;
     
-    var violetLeft;
-    var violetRight;
-    var violetSwing;
-    var violetBaseTriangle;
+    var fioletLewo;
+    var fioletPrawo;
+    var fioletProstokat;
+    var fioletTrojkat;
 	
-	var greenLeft;
-    var greenRight;
-    var greenSwing;
-    var greenBaseTriangle;
+	var zielonyLewo;
+    var zielonyPrawo;
+    var zielonyProstokat;
+    var zielonyTrojkat;
     var temp;
 
     function createWorld() {
@@ -44,45 +44,45 @@
 
 
 
-        violetLeft = new TransformedObject(shape);
-        violetLeft.setTranslation(-3.15, 1.7).setColor("black").setScale(0.4,0.4);
-        world.add(violetLeft);
-		violetRight = new TransformedObject(shape);
-        violetRight.setTranslation(-0.85, 1.3).setColor("black").setScale(0.4,0.4);
-        world.add(violetRight);
-		violetSwing = new TransformedObject(filledRect);
-        violetSwing.setTranslation(-2, 1.5).setColor("red").setScale(2.4,0.15).setRotation(-10);
-        world.add(violetSwing);
-		violetBaseTriangle = new TransformedObject(filledTriangle);
-        violetBaseTriangle.setTranslation(-2.0, -0.1).setColor("purple").setScale(0.4,1.6);
-        world.add(violetBaseTriangle);
+        fioletLewo = new TransformedObject(shape);
+        fioletLewo.setTranslation(-3.15, 1.7).setColor("black").setScale(0.4,0.4);
+        world.add(fioletLewo);
+		fioletPrawo = new TransformedObject(shape);
+        fioletPrawo.setTranslation(-0.85, 1.3).setColor("black").setScale(0.4,0.4);
+        world.add(fioletPrawo);
+		fioletProstokat = new TransformedObject(filledRect);
+        fioletProstokat.setTranslation(-2, 1.5).setColor("red").setScale(2.4,0.15).setRotation(-10);
+        world.add(fioletProstokat);
+		fioletTrojkat = new TransformedObject(filledTriangle);
+        fioletTrojkat.setTranslation(-2.0, -0.1).setColor("purple").setScale(0.4,1.6);
+        world.add(fioletTrojkat);
 
-        blueLeft = new TransformedObject(shape);
-        blueLeft.setTranslation(-1.45, -0.75).setColor("black").setScale(0.5,0.5);
-        world.add(blueLeft);
-		blueRight = new TransformedObject(shape);
-        blueRight.setTranslation(1.45, -1.25).setColor("black").setScale(0.5,0.5);
-        world.add(blueRight);
-		blueSwing = new TransformedObject(filledRect);
-        blueSwing.setTranslation(0, -1).setColor("red").setScale(3,0.2).setRotation(-10);
-        world.add(blueSwing);
-		blueBaseTriangle = new TransformedObject(filledTriangle);
-        blueBaseTriangle.setTranslation(0, -3).setColor("blue").setScale(0.5,2.0);
-        world.add(blueBaseTriangle);
+        niebieskiLewo = new TransformedObject(shape);
+        niebieskiLewo.setTranslation(-1.45, -0.75).setColor("black").setScale(0.5,0.5);
+        world.add(niebieskiLewo);
+		niebieskiPrawo = new TransformedObject(shape);
+        niebieskiPrawo.setTranslation(1.45, -1.25).setColor("black").setScale(0.5,0.5);
+        world.add(niebieskiPrawo);
+		niebieskiProstokat = new TransformedObject(filledRect);
+        niebieskiProstokat.setTranslation(0, -1).setColor("red").setScale(3,0.2).setRotation(-10);
+        world.add(niebieskiProstokat);
+		niebieskiTrojkat = new TransformedObject(filledTriangle);
+        niebieskiTrojkat.setTranslation(0, -3).setColor("blue").setScale(0.5,2.0);
+        world.add(niebieskiTrojkat);
 
 
-		greenLeft = new TransformedObject(shape);
-        greenLeft.setTranslation(1.3, 2.12).setColor("black").setScale(0.25,0.25);
-        world.add(greenLeft);
-		greenRight = new TransformedObject(shape);
-        greenRight.setTranslation(2.7, 1.88).setColor("black").setScale(0.25,0.25);
-        world.add(greenRight);
-		greenSwing = new TransformedObject(filledRect);
-        greenSwing.setTranslation(2, 2).setColor("red").setScale(1.5,0.1).setRotation(-10);
-        world.add(greenSwing);
-		greenBaseTriangle = new TransformedObject(filledTriangle);
-        greenBaseTriangle.setTranslation(2, 1).setColor("green").setScale(0.25,1);
-        world.add(greenBaseTriangle);
+		zielonyLewo = new TransformedObject(shape);
+        zielonyLewo.setTranslation(1.3, 2.12).setColor("black").setScale(0.25,0.25);
+        world.add(zielonyLewo);
+		zielonyPrawo = new TransformedObject(shape);
+        zielonyPrawo.setTranslation(2.7, 1.88).setColor("black").setScale(0.25,0.25);
+        world.add(zielonyPrawo);
+		zielonyProstokat = new TransformedObject(filledRect);
+        zielonyProstokat.setTranslation(2, 2).setColor("red").setScale(1.5,0.1).setRotation(-10);
+        world.add(zielonyProstokat);
+		zielonyTrojkat = new TransformedObject(filledTriangle);
+        zielonyTrojkat.setTranslation(2, 1).setColor("green").setScale(0.25,1);
+        world.add(zielonyTrojkat);
     }
     
     var shape = new SceneGraphNode();
@@ -103,12 +103,12 @@
     function updateFrame() {
         frameNumber++;
 
-        blueLeft.setRotation(-frameNumber * 0.8);
-		blueRight.setRotation(frameNumber * 0.8);
-        violetLeft.setRotation(-frameNumber * 0.8);
-		violetRight.setRotation(frameNumber * 0.8);
-		greenLeft.setRotation(-frameNumber * 0.8);
-		greenRight.setRotation(frameNumber * 0.8);
+        niebieskiLewo.setRotation(-frameNumber * 0.8);
+		niebieskiPrawo.setRotation(frameNumber * 0.8);
+        fioletLewo.setRotation(-frameNumber * 0.8);
+		fioletPrawo.setRotation(frameNumber * 0.8);
+		zielonyLewo.setRotation(-frameNumber * 0.8);
+		zielonyPrawo.setRotation(frameNumber * 0.8);
     }
  
 
