@@ -26,24 +26,11 @@
      *  Responsible for drawing the entire scene.  The display is filled with the background
      *  color before this function is called.
      */
-    function drawWorld() {
-
+     function drawWorld() {
         // TODO: Draw the content of the scene.
-        graphics.translate(0,-0.8);
-        swing("blue");
-
-
-        graphics.save();
-        graphics.translate(-2,2.5);
-        graphics.scale(0.8,0.9);
-        swing("purple");
-        graphics.restore();
-
-
-        graphics.translate(2,2.5);
-        graphics.scale(0.6,0.6);
-        swing("green");
-
+        fioletowy();
+        niebieski();
+        zielony();
     }
     
     /**
@@ -58,52 +45,82 @@
  
      // TODO: Define methods for drawing the objects in the scene.
 
-    function swing(color){
-        bar();
-        baseTriangle(color);
-    }
-
-    function bar(x,y){
+     function fioletowy() {
         graphics.save();
-        graphics.fillStyle = "red";
-        graphics.rotate(-10 * (Math.PI / 180));
-        rotatingShape(11, 1.45, 0, 1);
-        rotatingShape(11, -1.45, 0, -1);
-        graphics.fillRect(-1.5,-0.1, 3, 0.2);
+        graphics.translate(-2.4, 1);
+        graphics.scale(0.6, 0.5);
+        DrawObject("purple");
         graphics.restore();
-    }
-
-    
-
-    function baseTriangle(color) {
-    graphics.fillStyle = color;
-    graphics.beginPath()
-    graphics.moveTo(-0.25, -1.5);
-    graphics.lineTo(0.25, -1.5);
-    graphics.lineTo(0, 0);
-    graphics.closePath();
-     graphics.fill();
-    }
-    function rotatingShape(vertices, x, y,direction) { 
-
+        }
+        function niebieski() {
         graphics.save();
-        graphics.translate(x,y);
-        graphics.rotate(direction * (frameNumber * 0.75) * Math.PI / 180 );
+        graphics.translate(0, -1);
+        graphics.scale(0.7, 0.6);
+        DrawObject("blue");
+        graphics.restore();
+        }
+        function zielony() {
+        graphics.save();
+        graphics.translate(2, 1.2);
+        graphics.scale(0.5, 0.4);
+        DrawObject("green");
+        graphics.restore();
+        }
+        function DrawObject(kolor) {
+        graphics.save();
+        graphics.translate(-1.4, 1);
+        funkcjaobrotu();
+        graphics.restore();
+        graphics.save();
+        graphics.translate(1.4, 0);
+        funkcjaobrotu();
+        graphics.restore();
+        graphics.save();
+        graphics.translate(0, 0.5);
+        graphics.rotate(-20 * (Math.PI / 180));
+        graphics.scale(3, 0.2);
+        graphics.fillStyle = "red";
+        filledRect();
+        graphics.restore();
+        graphics.save();
+        graphics.translate(0, -2.5);
+        graphics.scale(1, 3);
+        graphics.fillStyle = kolor;
+        filledTriangle(graphics);
+        graphics.restore();
+        }
+        function pieciokąt(x, y) {
+
+        var katy = 11,X = [5],Y = [5],alpha = (2 * Math.PI) / katy,phiI = 
+        0,radius = 1;
+        for (var i = 0; i < katy; i++) {
+        phiI = i * alpha;
+        X[i] = (radius * Math.cos(phiI));
+        Y[i] = (radius * Math.sin(phiI));
+        }
         graphics.beginPath();
-        for (i = 0; i <= vertices; i++) {
-            graphics.lineTo((0.5 * Math.cos(i * 2 * Math.PI / vertices)), 
-                            (0.5 * Math.sin(i * 2 * Math.PI / vertices)));
-            graphics.lineTo(0,0);
-            graphics.lineTo((0.5 * Math.cos(i * 2 * Math.PI / vertices)), 
-                            (0.5 * Math.sin(i * 2 * Math.PI / vertices)));
+        graphics.moveTo(x - X[0], y - Y[0]);
+        for (var i = 1; i < X.length; i++) {
+        graphics.lineTo(x - X[i], y - Y[i]);
         }
         graphics.closePath();
         graphics.stroke();
-        graphics.translate(x,y);
-
+        //dodwanie lini
+        graphics.beginPath();
+        for (var i = 0; i < katy; i++) {
+        graphics.moveTo(x - X[i], y - Y[i]);
+        graphics.lineTo(x, y);
+        }
+        graphics.closePath();
+        graphics.stroke();
+        }
+        function funkcjaobrotu() {
+        graphics.save();
+        graphics.rotate((frameNumber * 0.75) * Math.PI / 180);
+        graphics.scale(0.7, 0.7);
+        pieciokąt(0, 0);
         graphics.restore();
-    }
-
+}
 
     //------------------- Some methods for drawing basic shapes. ----------------
     
